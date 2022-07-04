@@ -463,11 +463,11 @@ def calc_threshold_mean(features):
     calculate the threshold for bucket by mean
     """
     lines_len = list(map(lambda t: len(t) + 1, features))
-    average = int(sum(lines_len) / len(lines_len))
+    average = int(np.mean(lines_len))
     lower_line = list(filter(lambda t: t < average, lines_len))
     upper_line = list(filter(lambda t: t >= average, lines_len))
-    lower_average = int(sum(lower_line) / len(lower_line))
-    upper_average = int(sum(upper_line) / len(upper_line))
+    lower_average = int(np.mean(lower_line))
+    upper_average = int(np.mean(upper_line))
     max_len = max(lines_len)
     return [lower_average, average, upper_average, max_len]
 
